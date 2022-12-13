@@ -1,0 +1,29 @@
+body {
+   height: 100vh;
+}
+
+.container {
+   height: 100%;
+}
+
+.container_grid {
+   height: 100%;
+}
+
+.grid_element {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   width: 200px;
+   height: 200px;
+   border: 1px dashed #696969
+}
+
+.grid_row {
+   display: flex;
+   gap: 25px;
+}
+
+.grid_row:not(:last-child) {
+   margin-bottom: 25px;
+}
