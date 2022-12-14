@@ -9,10 +9,21 @@
 <body>
    <div class="container">
       <div id="grid" class="container_grid"></div>
+      <div id="contextMenu" class="context_menu">
+         <h4>Виджеты</h4>
+         <ul>
+            <li><a onclick="addChat()">Чат</a></li>
+            <li><a onclick="addCalendar()">Календарь</a></li>
+            <li><a onclick="addChart()">График</a></li>
+            <li><a onclick="addMail()">Почта</a></li>
+         </ul>
+      </div>
    </div>
 
    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.16/dist/js/uikit.min.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/uikit@3.15.16/dist/js/uikit-icons.min.js"></script>
-   <script src="main.js"></script>
+   <script src="scripts/grid.js"></script>
+   <script src="scripts/contextMenu.js"></script>
+   <script src="scripts/widgets.js"></script>
 </body>
 </html>
