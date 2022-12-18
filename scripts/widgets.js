@@ -1,23 +1,31 @@
 function addChat() {
+   gridElement.classList.remove("empty_element")
+   gridElement.classList.add("widget")
    gridElement.innerHTML = "<div>Чат</div>"
-   gridElement.style.opacity = 1
    contextMenu.style.display = "none"
+   addDragAndDropEvents()
 }
 
 function addCalendar() {
+   gridElement.classList.remove("empty_element")
+   gridElement.classList.add("widget")
    gridElement.innerHTML = "<div>Календарь</div>"
-   gridElement.style.opacity = 1
    contextMenu.style.display = "none"
+   addDragAndDropEvents()
 }
 
 function addChart() {
+   gridElement.classList.remove("empty_element")
+   gridElement.classList.add("widget")
    gridElement.innerHTML = "<div>График</div>"
-   gridElement.style.opacity = 1
    contextMenu.style.display = "none"
+   addDragAndDropEvents()
 }
 
 function addMail() {
+   gridElement.classList.remove("empty_element")
+   gridElement.classList.add("widget")
    gridElement.innerHTML = "<div>Почта</div>"
-   gridElement.style.opacity = 1
    contextMenu.style.display = "none"
+   addDragAndDropEvents()
 }

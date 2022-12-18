@@ -39,9 +39,21 @@ a:hover {
    opacity: 0.3;
    width: 200px;
    height: 200px;
+   background-color: #ffffff;
    border-radius: 5px;
    border: 1px dashed #696969;
-   transition: all 0.1s ease-in-out;
+   transition: 0.1s ease-in-out;
+   transition-property: background-color, border, opacity;
+   cursor: pointer;
+}
+
+.widget {
+   opacity: 1;
+}
+
+.empty_preview {
+   opacity: 0.6;
+   background-color: whitesmoke;
 }
 
 .grid_element:hover {
