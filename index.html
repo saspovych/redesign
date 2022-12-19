@@ -10,25 +10,23 @@
    <div class="container">
       <div id="grid" class="container_grid"></div>
       <div id="contextMenu" class="context_menu">
-         <h4>Виджеты</h4>
          <h5 class="uk-margin-remove uk-text-left">Маленькие (1х1)</h5>
-         <hr class="uk-margin-remove-top uk-margin-small-bottom">
          <ul>
-            <li><a onclick="addWidget('calendar')">Календарь</a></li>
-            <li><a onclick="addWidget('chart')">График</a></li>
+            <li onclick="addWidget('calendar')"><a class="uk-icon" uk-icon="calendar"></a><a>Календарь скидок</a></li>
+            <li onclick="addWidget('chart')"><a class="uk-icon" uk-icon="gitter"></a><a>График продаж</a></li>
          </ul>
+         <hr>
 
          <h5 class="uk-margin-remove-bottom uk-margin-small-top uk-text-left">Широкие (1х2)</h5>
-         <hr class="uk-margin-remove-top uk-margin-small-bottom">
          <ul>
-            <li><a onclick="addWidget('chat', 1, 2)">Чат</a></li>
-            <li><a onclick="addWidget('mail', 1, 2)">Почта</a></li>
+            <li onclick="addWidget('chat', 1, 2)"><a class="uk-icon" uk-icon="commenting"></a><a>Чат</a></li>
+            <li onclick="addWidget('mail', 1, 2)"><a class="uk-icon" uk-icon="mail"></a><a>Корпоративная почта</a></li>
          </ul>
+         <hr>
 
          <h5 class="uk-margin-remove uk-text-left">Ультраширокие (1х3)</h5>
-         <hr class="uk-margin-remove-top uk-margin-small-bottom">
          <ul>
-            <li><a onclick="addWidget('statistic', 1, 3)">Статистика</a></li>
+            <li onclick="addWidget('statistic', 1, 3)"><a class="uk-icon" uk-icon="gitter"></a><a>Статистика увольнений</a></li>
          </ul>
       </div>
    </div>

@@ -77,8 +77,29 @@ a:hover {
    padding: 10px;
    width: 200px;
    max-height: 300px;
-   border-radius: 5px;
+   border-radius: 7px;
    background-color: #fff;
-   box-shadow: 3px 3px 6px 1px #bebebe;
-   text-align: center;
+   box-shadow: 2px 3px 5px 1px #c9c9c9;
+}
+
+.context_menu h5 {
+   font-size: 13px;
+   font-weight: 600;
+}
+
+.context_menu hr {
+   margin: 10px 0;
+}
+
+.context_menu li {
+   display: flex;
+   align-items: center;
+   gap: 5px;
+   padding-left: 15px;
+   font-size: 14px;
+   cursor: pointer;
+}
+
+.context_menu li:hover a {
+   color: black;
 }
