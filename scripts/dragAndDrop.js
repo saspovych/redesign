@@ -29,14 +29,14 @@ function addDragAndDropEvents() {
          })
 
          document.onmousemove = (event) => {
-            moveAt(event)
-            const element = event.composedPath().find((tag) => tag?.classList?.contains("grid_element"))
-
             emptyElements.forEach((element) => {
                element.innerHTML = `<a class="uk-icon-button uk-icon" uk-icon="plus"></a>`
             })
 
-            if (element && element !== oldWidget) {
+            moveAt(event)
+            const element = event.composedPath().find((tag) => tag?.classList?.contains("grid_element"))
+
+            if (element && !element.classList.contains("widget")) {
                newWidget = element
                newWidget.innerHTML = ghost.innerHTML
             } else {
