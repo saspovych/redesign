@@ -21,13 +21,3 @@ function generateGrid() {
    addDragAndDropEvents()
 }
 generateGrid()
-
-function addResizeEvent() {
-   const elements = document.querySelectorAll(".grid_element")
-
-   elements.forEach((element) => {
-      element.onresize = (event) => {
-         console.log(event)
-      }
-   })
-}
