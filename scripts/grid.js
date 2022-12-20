@@ -1,10 +1,12 @@
 const grid = document.getElementById("grid")
 let gridElement
+let gridElementIndex = 0
+let gridLayout = []
+
+const numberElementsInRow = Math.floor(document.body.clientWidth / 225)
+const numberElementsInColumn = Math.floor(document.body.clientHeight / 225)
 
 function generateGrid() {
-   const numberElementsInRow = Math.floor(document.body.clientWidth / 225)
-   const numberElementsInColumn = Math.floor(document.body.clientHeight / 225)
-
    let divs = []
    let index = 0
 
@@ -16,9 +18,11 @@ function generateGrid() {
    </div>`)
          index++
       }
+      gridLayout.push(row.map(() => "empty"))
       divs.push(`<div class="grid_row">${row.join("")}</div>`)
    }
 
+   console.log(gridLayout)
    grid.innerHTML = divs.join("")
    addDragAndDropEvents()
 }

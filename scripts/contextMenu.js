@@ -10,6 +10,7 @@ grid.addEventListener("click", (event) => {
          contextMenu.style.left = `${x + 240 > grid.clientWidth ? x - 240 : x + 20}px`
 
          gridElement = event.composedPath().find((tag) => tag.classList.contains("grid_element"))
+         gridElementIndex = +gridElement.getAttribute("id")
    } else {
       contextMenu.style.display = "none"
    }
