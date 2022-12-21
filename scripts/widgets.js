@@ -1,13 +1,14 @@
 let isCanAddWidget = true
-let notificationMessage = "Нельзя добавить этот виджет, так как, он удалит существующий виджет на своём пути."
+let notificationMessage = "Нельзя добавить этот виджет, так как, он удалит существующий виджет на своём пути"
+let widgetIndex = 0
+let widgetAreaName = `widget-${widgetIndex}`
 
 function addWidget(widgetName, cols = 1, rows = 1) {
-   let gridWidgetName = widgetName
    if (rows > 1) {
-      expandWidgetInRow(widgetName, rows)
+      expandWidgetInRow(rows)
    }
    if (cols > 1) {
-      expandWidgetInColumn(widgetName, cols)
+      expandWidgetInColumn(cols)
    }
    if (rows === 1 && cols === 1) {
       isCanAddWidget = true
@@ -15,7 +16,10 @@ function addWidget(widgetName, cols = 1, rows = 1) {
       const gridRow = Math.floor(gridElementIndex / numberElementsInRow)
       const gridCol = gridElementIndex % numberElementsInRow
 
-      gridLayout[gridRow][gridCol] = gridWidgetName
+      gridLayout[gridRow][gridCol] = widgetAreaName
+      gridElement.style.gridArea = widgetAreaName
+      gridElement.classList.remove("empty_element")
+      gridElement.classList.add("widget")
    }
 
    if (isCanAddWidget) {
@@ -37,40 +41,41 @@ function addWidget(widgetName, cols = 1, rows = 1) {
             break
       }
 
-      gridElement.classList.remove("empty_element")
-      gridElement.classList.add("widget")
       addDragAndDropEvents()
       contextMenu.style.display = "none"
+      grid.style.gridTemplateAreas = `'${gridLayout.map((row) => row.join(" ")).join("' '")}'`
+      widgetIndex++
+      widgetAreaName = `widget-${widgetIndex}`
    } else {
       UIkit.notification({message: notificationMessage, status: "danger"})
    }
 }
 
-function expandWidgetInRow(widgetName, rows) {
-   const gridElements = document.querySelectorAll(".grid_element")
+function expandWidgetInRow(rows) {
    const gridRow = Math.floor(gridElementIndex / numberElementsInRow)
    const gridCol = gridElementIndex % numberElementsInRow
    isCanAddWidget = true
 
    if (Math.floor(gridElementIndex / numberElementsInRow) < Math.floor((gridElementIndex + rows - 1) / numberElementsInRow)) {
       for (let i = 1; i < rows; i++) {
-         if (gridLayout[gridRow][gridCol - i] !== "empty") {
+         if (!gridEmptyLayout.includes(gridLayout[gridRow][gridCol - i])) {
             isCanAddWidget = false
-            notificationMessage = "Нельзя добавить этот виджет, так как, он удалит виджет стоящий слева от него."
+            notificationMessage = "Нельзя добавить этот виджет, так как, он удалит виджет стоящий слева от него"
             break
          }
       }
 
       if (isCanAddWidget) {
-         gridLayout[gridRow][gridCol] = widgetName
+         gridLayout[gridRow][gridCol] = widgetAreaName
+         setDivGridAreaName(gridElementIndex)
          for (let i = 1; i < rows; i++) {
-            gridLayout[gridRow][gridCol - i] = widgetName
-            gridElements[gridElementIndex - i].style.display = "none"
+            gridLayout[gridRow][gridCol - i] = widgetAreaName
+            document.getElementById(`${gridElementIndex - i}`).style.display = "none"
          }
       }
    } else {
       for (let i = 1; i < rows; i++) {
-         if (gridLayout[gridRow][gridCol + i] !== "empty") {
+         if (!gridEmptyLayout.includes(gridLayout[gridRow][gridCol + i])) {
             isCanAddWidget = false
             notificationMessage = "Нельзя добавить этот виджет, так как, он удалит виджет стоящий справа от него"
             break
@@ -78,10 +83,11 @@ function expandWidgetInRow(widgetName, rows) {
       }
 
       if (isCanAddWidget) {
-         gridLayout[gridRow][gridCol] = widgetName
+         gridLayout[gridRow][gridCol] = widgetAreaName
+         setDivGridAreaName(gridElementIndex)
          for (let i = 1; i < rows; i++) {
-            gridLayout[gridRow][gridCol + i] = widgetName
-            gridElements[gridElementIndex + i].style.display = "none"
+            gridLayout[gridRow][gridCol + i] = widgetAreaName
+            document.getElementById(`${gridElementIndex + i}`).style.display = "none"
          }
       }
    }
@@ -91,15 +97,15 @@ function expandWidgetInRow(widgetName, rows) {
    }
 }
 
-function expandWidgetInColumn(widgetName, cols) {
+function expandWidgetInColumn(cols) {
    const gridElements = document.querySelectorAll(".grid_element")
    const gridRow = Math.floor(gridElementIndex / numberElementsInRow)
    const gridCol = gridElementIndex % numberElementsInRow
    isCanAddWidget = true
 
-   if (gridElementIndex + numberElementsInRow * cols - 1 > gridElements.length) {
+   if (gridElementIndex + numberElementsInRow * (cols - 1) > gridElements.length) {
       for (let i = 1; i < cols; i++) {
-         if (gridLayout[gridRow - i][gridCol] !== "empty") {
+         if (!gridEmptyLayout.includes(gridLayout[gridRow - i][gridCol])) {
             isCanAddWidget = false
             notificationMessage = "Нельзя добавить этот виджет, так как, он удалит виджет стоящий сверху от него"
             break
@@ -107,15 +113,16 @@ function expandWidgetInColumn(widgetName, cols) {
       }
 
       if (isCanAddWidget) {
-         gridLayout[gridRow][gridCol] = widgetName
+         gridLayout[gridRow][gridCol] = widgetAreaName
+         setDivGridAreaName(gridElementIndex)
          for (let i = 1; i < cols; i++) {
-            gridLayout[gridRow - i][gridCol] = widgetName
-            // gridElements[gridElementIndex - numberElementsInRow * i].style.display = "none"
+            gridLayout[gridRow - i][gridCol] = widgetAreaName
+            document.getElementById(`${gridElementIndex - numberElementsInRow * i}`).style.display = "none"
          }
       }
    } else {
       for (let i = 1; i < cols; i++) {
-         if (gridLayout[gridRow + i][gridCol] !== "empty") {
+         if (!gridEmptyLayout.includes(gridLayout[gridRow + i][gridCol])) {
             isCanAddWidget = false
             notificationMessage = "Нельзя добавить этот виджет, так как, он удалит виджет стоящий снизу от него"
             break
@@ -123,11 +130,23 @@ function expandWidgetInColumn(widgetName, cols) {
       }
 
       if (isCanAddWidget) {
-         gridLayout[gridRow][gridCol] = widgetName
+         gridLayout[gridRow][gridCol] = widgetAreaName
+         setDivGridAreaName(gridElementIndex)
          for (let i = 1; i < cols; i++) {
-            gridLayout[gridRow + i][gridCol] = widgetName
-         // gridElements[gridElementIndex + numberElementsInRow * i].style.display = "none"
+            gridLayout[gridRow + i][gridCol] = widgetAreaName
+            document.getElementById(`${gridElementIndex + numberElementsInRow * i}`).style.display = "none"
          }
       }
    }
+
+   if (isCanAddWidget) {
+      gridElement.style.height = `${ 200 * cols + 25 * ((cols - 1)) }px`
+   }
+}
+
+function setDivGridAreaName(divId) {
+   const div = document.getElementById(`${divId}`)
+   div.style.gridArea = widgetAreaName
+   div.classList.remove("empty_element")
+   div.classList.add("widget")
 }

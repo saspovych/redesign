@@ -2,6 +2,8 @@ const grid = document.getElementById("grid")
 let gridElement
 let gridElementIndex = 0
 let gridLayout = []
+let gridElementsLayout = []
+let gridEmptyLayout = []
 
 const numberElementsInRow = Math.floor(document.body.clientWidth / 225)
 const numberElementsInColumn = Math.floor(document.body.clientHeight / 225)
@@ -11,19 +13,25 @@ function generateGrid() {
    let index = 0
 
    for (let i = 0; i < numberElementsInColumn; i++) {
-      const row = []
+      const layoutRow = []
+      const elementsRow = []
       for (let j = 0; j < numberElementsInRow; j++) {
-         row.push(`<div id="${ index }" class="grid_element empty_element">
+         const newDiv = `<div id="${ index }" class="grid_element empty_element" style="grid-area: empty-${index}">
          <a class="uk-icon-button uk-icon" uk-icon="plus"></a>
-   </div>`)
+         </div>`
+         divs.push(newDiv)
+         elementsRow.push(newDiv)
+         gridEmptyLayout.push(`empty-${index}`)
+         layoutRow.push(`empty-${index}`)
          index++
       }
-      gridLayout.push(row.map(() => "empty"))
-      divs.push(`<div class="grid_row">${row.join("")}</div>`)
+
+      gridElementsLayout.push(elementsRow)
+      gridLayout.push(layoutRow)
    }
 
-   console.log(gridLayout)
    grid.innerHTML = divs.join("")
+   grid.style.gridTemplateAreas = `'${gridLayout.map((row) => row.join(" ")).join("' '")}'`
    addDragAndDropEvents()
 }
 generateGrid()

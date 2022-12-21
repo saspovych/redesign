@@ -20,15 +20,15 @@ a:hover {
 
 /* Container */
 .container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
    height: 100%;
 }
 
 .container_grid {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   height: 100%;
+   display: grid;
+   gap: 25px;
 }
 
 /* Grid */
@@ -79,6 +79,7 @@ a:hover {
    max-height: 300px;
    border-radius: 7px;
    background-color: #fff;
+   overflow: auto;
    box-shadow: 2px 3px 5px 1px #c9c9c9;
 }
 
