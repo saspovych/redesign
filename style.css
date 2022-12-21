@@ -20,15 +20,15 @@ a:hover {
 
 /* Container */
 .container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
    height: 100%;
 }
 
 .container_grid {
-   display: flex;
-   flex-direction: column;
-   justify-content: center;
-   align-items: center;
-   height: 100%;
+   display: grid;
+   gap: 25px;
 }
 
 /* Grid */

@@ -41,6 +41,7 @@ function addWidget(widgetName, cols = 1, rows = 1) {
       gridElement.classList.add("widget")
       addDragAndDropEvents()
       contextMenu.style.display = "none"
+      grid.style.gridTemplateArea = gridLayout
    } else {
       UIkit.notification({message: notificationMessage, status: "danger"})
    }
