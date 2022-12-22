@@ -18,12 +18,21 @@ a:hover {
    color: black;
 }
 
+
 /* Container */
 .container {
    display: flex;
+   flex-direction: column;
    justify-content: center;
    align-items: center;
    height: 100%;
+}
+
+.container_title {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
 }
 
 .container_grid {
@@ -54,6 +63,10 @@ a:hover {
 .empty_preview {
    opacity: 0.6;
    background-color: whitesmoke;
+}
+
+.hidden {
+   visibility: hidden;
 }
 
 .grid_element:hover {
