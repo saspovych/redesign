@@ -1,6 +1,6 @@
 const contextMenu = document.getElementById("contextMenu")
 
-grid.addEventListener("click", (event) => {
+document.body.addEventListener("click", (event) => {
    if (event.composedPath().find((tag) => tag?.classList?.contains("grid_element") ?? false)) {
          const x = event.clientX
          const y = event.clientY
