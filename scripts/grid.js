@@ -5,8 +5,8 @@ let gridLayout = []
 let gridElementsLayout = []
 let gridEmptyLayout = []
 
-const numberElementsInRow = Math.floor(document.body.clientWidth / 225)
-const numberElementsInColumn = Math.floor(document.body.clientHeight / 225)
+const numberElementsInRow = Math.floor((document.body.clientWidth - 200) / 225)
+const numberElementsInColumn = Math.floor((document.body.clientHeight - 200) / 225)
 
 function generateGrid() {
    let divs = []

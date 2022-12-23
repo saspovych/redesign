@@ -21,9 +21,18 @@ a:hover {
 /* Container */
 .container {
    display: flex;
-   justify-content: center;
+   flex-direction: column;
    align-items: center;
-   height: 100%;
+   padding: 50px 0 20px;
+   height: 90%;
+}
+
+.container_title {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   margin-bottom: 50px;
+   width: 90%;
 }
 
 .container_grid {
@@ -54,6 +63,10 @@ a:hover {
 .empty_preview {
    opacity: 0.6;
    background-color: whitesmoke;
+}
+
+.hidden {
+   visibility: hidden;
 }
 
 .grid_element:hover {
